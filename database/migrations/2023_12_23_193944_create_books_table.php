@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 64)->comment('Title or name of the book');
             $table->unsignedBigInteger('publisher_id')->comment('ID of the author of the book');
             $table->timestamps();
-            $table->softDeletes('Moment or period when the books has been removed');
+            $table->softDeletes()->comment('Moment or period when the index has been removed');
 
             $table->foreign('publisher_id')
                 ->references('id')

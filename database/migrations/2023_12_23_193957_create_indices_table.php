@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->comment('The parent or predecessor of the index.')->nullable();
             $table->unsignedBigInteger('book_id')->comment('Books whom the index belongs to.');
             $table->timestamps();
-            $table->softDeletes('Moment or period when the index has been removed');
+            $table->softDeletes()->comment('Moment or period when the index has been removed');
 
             $table->foreign('parent_id')
                 ->references('id')

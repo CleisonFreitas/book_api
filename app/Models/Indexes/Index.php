@@ -10,7 +10,7 @@ class Index extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'index';
+    protected $table = 'book_index';
 
     public $timestamps = true;
 }

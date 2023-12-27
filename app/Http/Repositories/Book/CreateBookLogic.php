@@ -6,6 +6,7 @@ namespace App\Http\Repositories\Book;
 
 use App\Http\Interfaces\Book\CreateBookContract;
 use App\Http\Resources\BookResource;
+use App\Http\Services\Containers\IndexServiceContainer;
 use App\Http\Services\Dtos\BookObject;
 use App\Http\Services\Records\Book\BookSave;
 use App\Http\Services\Validations\BookValidation;
@@ -18,6 +19,7 @@ class CreateBookLogic implements CreateBookContract
 {
     public function __construct(
         private Book $book,
+        private IndexServiceContainer $indexService,
         private BookSave $bookSave,
         private BookValidation $bookValidator
     ) {
@@ -30,17 +32,21 @@ class CreateBookLogic implements CreateBookContract
     public function store(array $data): JsonResponse
     {
         try {
+            DB::beginTransaction();
+
             $this->bookValidator->validator($data);
 
-            DB::beginTransaction();
             $bookObject = new BookObject($data['title']);
 
             $newBook = $this->bookSave->save($bookObject, $this->book);
 
+            $this->indexService->store($data['index'], $newBook->id);
+
             $resource = new BookResource($newBook);
 
-            return response()->json(['success' => $resource], 201);
             DB::commit();
+
+            return response()->json(['success' => $resource], 201);
         } catch (ValidationException $ex) {
             DB::rollBack();
 

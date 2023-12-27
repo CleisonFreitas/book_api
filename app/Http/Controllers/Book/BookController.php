@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Book;
 
-use App\Http\Controllers\Controller;
 use App\Http\Services\Containers\BookServiceContainer;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class BookController
 {
     public function __construct(
-        private BookServiceContainer $bookService
+        public BookServiceContainer $bookService
     ) {
     }
 

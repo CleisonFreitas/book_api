@@ -6,17 +6,16 @@ namespace App\Http\Services\Validations;
 
 use Illuminate\Support\Facades\Validator;
 
-class BookValidation
+class IndexValidation
 {
-    public function validator(array $data)
+    public function execute(array $data)
     {
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:64'],
-            'index' => ['required','array'],
             'index.*.title' => ['required','string','max:64'],
             'index.*.page' => ['required','numeric'],
-            'subindex.*.title' => ['required','string','max:64'],
-            'subindex.*.page' => ['required','numeric'],
+            'index.*.subindex' => ['array'],
+            '*.subindex.*.title' => ['required','string','max:64'],
+            '*.subindex.*.page' => ['required','numeric'],
         ])->validate();
     }
 }

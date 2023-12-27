@@ -7,7 +7,7 @@ namespace App\Http\Services\Records;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SaveRecord
+abstract class SaveRecord
 {
     /**
      * @param  Model  $model;

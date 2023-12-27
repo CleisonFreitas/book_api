@@ -31,6 +31,6 @@ class Book extends Model
      */
     public function bookIndex(): HasMany
     {
-        return $this->hasMany(Index::class, 'book_id');
+        return $this->hasMany(Index::class, 'book_id')->whereNull('parent_id');
     }
 }

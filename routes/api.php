@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
 
-Route::middleware('jwt.verify')->group(function () {
+Route::middleware('jwt.door')->group(function () {
+    
     Route::prefix('v1')->group(function () {
         require __DIR__.'/v1.php';
     });

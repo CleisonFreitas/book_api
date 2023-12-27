@@ -23,7 +23,7 @@ class BookResource extends JsonResource
                 'name' => $this->publisher->name,
                 'email' => $this->publisher->email,
             ],
-            'index' => $this->bookIndex,
+            'index' => IndexResource::collection($this->bookIndex),
             'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
         ];

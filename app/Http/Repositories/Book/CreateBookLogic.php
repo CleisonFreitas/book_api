@@ -45,11 +45,9 @@ class CreateBookLogic implements CreateBookContract
             $resource = new BookResource($newBook);
 
             DB::commit();
-
             return response()->json(['success' => $resource], 201);
         } catch (ValidationException $ex) {
             DB::rollBack();
-
             return response()->json(['errors' => [$ex->validator->errors()]], 422);
         }
     }

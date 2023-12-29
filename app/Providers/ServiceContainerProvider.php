@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\Interfaces\Auth\AuthLoginContract;
 use App\Http\Interfaces\Auth\AuthLogoutContract;
 use App\Http\Interfaces\Book\CreateBookContract;
+use App\Http\Interfaces\Book\ListBookContract;
 use App\Http\Interfaces\Index\CreateBookIndexContract;
 use App\Http\Services\Containers\AuthServiceContainer;
 use App\Http\Services\Containers\BookServiceContainer;
@@ -26,7 +27,10 @@ class ServiceContainerProvider extends ServiceProvider
         });
 
         $this->app->bind(BookServiceContainer::class, function ($app) {
-            return new BookServiceContainer($app->make(CreateBookContract::class));
+            return new BookServiceContainer(
+                $app->make(CreateBookContract::class),
+                $app->make(ListBookContract::class)
+            );
         });
 
         $this->app->bind(IndexServiceContainer::class, function ($app) {

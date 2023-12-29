@@ -16,4 +16,9 @@ class BookController
     {
         return $this->bookService->store($request->all());
     }
+
+    public function index(Request $request)
+    {
+        return $this->bookService->index($request);
+    }
 }

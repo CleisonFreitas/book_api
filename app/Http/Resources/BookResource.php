@@ -24,8 +24,13 @@ class BookResource extends JsonResource
                 'email' => $this->publisher->email,
             ],
             'index' => IndexResource::collection($this->bookIndex),
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y'),
+            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y h:i:s'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y h:i:s'),
+            'paginate' => [
+                'current_page' => $this->paginate()->currentPage(),
+                'per_page' => $this->paginate()->perPage(),
+                'last_page' => $this->paginate()->lastPage(),
+            ]
         ];
     }
 }

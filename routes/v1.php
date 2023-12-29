@@ -5,4 +5,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(BookController::class)->group(function () {
     Route::post('/books', 'store');
+    Route::get('/books', 'index');
 });

@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Http\Interfaces\Auth\AuthLoginContract;
 use App\Http\Interfaces\Auth\AuthLogoutContract;
 use App\Http\Interfaces\Book\CreateBookContract;
+use App\Http\Interfaces\Book\ListBookContract;
 use App\Http\Interfaces\Index\CreateBookIndexContract;
 use App\Http\Repositories\Auth\AuthLoginLogic;
 use App\Http\Repositories\Auth\AuthLogoutLogic;
 use App\Http\Repositories\Book\CreateBookLogic;
+use App\Http\Repositories\Book\ListBookLogic;
 use App\Http\Repositories\Index\CreateBookIndexLogic;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +25,7 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(AuthLogoutContract::class, AuthLogoutLogic::class);
         $this->app->bind(CreateBookContract::class, CreateBookLogic::class);
         $this->app->bind(CreateBookIndexContract::class, CreateBookIndexLogic::class);
+        $this->app->bind(ListBookContract::class, ListBookLogic::class);
     }
 
     /**
